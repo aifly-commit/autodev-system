@@ -1,0 +1,74 @@
+# AutoDev System Configuration
+# Based on Anthropic's long-running agent harness design
+
+# Project defaults
+project:
+  autodev_dir: ".autodev"
+  feature_list_file: "feature_list.json"
+  progress_file: "progress.md"
+  init_script: "init.sh"
+  test_results_file: "test_results.json"
+
+# Agent configuration
+agents:
+  initializer:
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 8192
+    temperature: 0.3
+  coder:
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 16384
+    temperature: 0.2
+  tester:
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 8192
+    temperature: 0.1
+
+# Execution settings
+execution:
+  max_iterations: 100
+  session_timeout_ms: 300000  # 5 minutes
+  retry_attempts: 3
+  retry_delay_ms: 1000
+
+# Feature list settings
+feature_list:
+  min_features: 5
+  max_features: 500
+  categories:
+    - core
+    - ui
+    - api
+    - auth
+    - storage
+    - testing
+  priority_levels:
+    - critical
+    - high
+    - medium
+    - low
+
+# Git settings
+git:
+  auto_commit: true
+  commit_prefix: "[AutoDev]"
+  branch_prefix: "autodev/"
+
+# Testing settings
+testing:
+  e2e_enabled: true
+  browser: "chromium"
+  headless: true
+  screenshot_on_failure: true
+  test_timeout_ms: 30000
+
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "autodev.log"
+
+# Paths
+paths:
+  templates: "templates"
+  prompts: "templates/prompts"
